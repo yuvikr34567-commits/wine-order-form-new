@@ -115,18 +115,30 @@
             text-align: center;
         }
         
-        .total-row {
-            text-align: right;
-            font-weight: bold;
-            margin-top: 10px;
+        .totals-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
         }
         
-        .total-input {
-            width: 100px;
-            text-align: right;
-            border: 1px solid #333;
-            padding: 5px;
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+        
+        .total-row.grand-total {
+            border-top: 2px solid #333;
+            margin-top: 10px;
+            padding-top: 10px;
             font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .total-value {
+            min-width: 100px;
+            text-align: right;
         }
         
         .payment-section {
@@ -164,6 +176,26 @@
             color: #666;
         }
         
+        .whatsapp-button {
+            display: block;
+            width: 100%;
+            background-color: #25D366;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 30px;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #20BA5A;
+        }
+        
         .contact-info {
             margin-top: 20px;
             text-align: center;
@@ -183,6 +215,9 @@
             }
             .container {
                 box-shadow: none;
+            }
+            .whatsapp-button {
+                display: none;
             }
         }
     </style>
@@ -297,9 +332,19 @@
             </tbody>
         </table>
         
-        <div class="total-row">
-            <span style="margin-right: 20px;">TOTAL</span>
-            <input type="text" class="total-input" id="grandTotal" value="0" readonly>
+        <div class="totals-section">
+            <div class="total-row">
+                <div>Subtotal:</div>
+                <div class="total-value" id="subtotal">$0.00</div>
+            </div>
+            <div class="total-row">
+                <div>10% OFF:</div>
+                <div class="total-value" id="discount">$0.00</div>
+            </div>
+            <div class="total-row grand-total">
+                <div>Total:</div>
+                <div class="total-value" id="grandTotal">$0.00</div>
+            </div>
         </div>
         
         <div class="payment-section">
@@ -335,6 +380,10 @@
             </div>
         </div>
         
+        <button class="whatsapp-button" onclick="sendWhatsAppOrder()">
+            📱 Send Order via WhatsApp
+        </button>
+        
         <div class="contact-info">
             Wine Rep: Cindy Lamb
         </div>
@@ -351,7 +400,7 @@
         
         function calculateTotal() {
             const rows = document.querySelectorAll('#wineTable tr');
-            let grandTotal = 0;
+            let subtotal = 0;
             
             rows.forEach(row => {
                 const priceInput = row.cells[1].querySelector('input');
@@ -361,13 +410,60 @@
                 const priceText = priceInput.value.replace(/[^0-9]/g, '');
                 const price = parseInt(priceText) || 0;
                 const qty = parseInt(qtyInput.value) || 0;
-                const subtotal = price * qty;
+                const itemSubtotal = price * qty;
                 
-                subtotalInput.value = 'CRC ' + subtotal.toLocaleString();
-                grandTotal += subtotal;
+                subtotalInput.value = 'CRC ' + itemSubtotal.toLocaleString();
+                subtotal += itemSubtotal;
             });
             
-            document.getElementById('grandTotal').value = grandTotal.toLocaleString();
+            const discount = subtotal * 0.10;
+            const total = subtotal - discount;
+            
+            document.getElementById('subtotal').textContent = '$' + subtotal.toLocaleString();
+            document.getElementById('discount').textContent = '$' + discount.toLocaleString();
+            document.getElementById('grandTotal').textContent = '$' + total.toLocaleString();
+        }
+        
+        function sendWhatsAppOrder() {
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const address = document.getElementById('address').value;
+            const instructions = document.getElementById('instructions').value;
+            const date = document.getElementById('date').value;
+            
+            let orderText = `*Wine Order - Casa Rio*\n\n`;
+            orderText += `Date: ${date}\n`;
+            orderText += `Name: ${name}\n`;
+            orderText += `Contact: ${contact}\n`;
+            orderText += `WhatsApp: ${whatsapp}\n`;
+            orderText += `Delivery Address: ${address}\n`;
+            orderText += `Instructions: ${instructions}\n\n`;
+            orderText += `*Order Details:*\n`;
+            
+            const rows = document.querySelectorAll('#wineTable tr');
+            rows.forEach(row => {
+                const wine = row.cells[0].querySelector('input').value;
+                const price = row.cells[1].querySelector('input').value;
+                const qty = row.cells[2].querySelector('input').value;
+                const subtotal = row.cells[3].querySelector('input').value;
+                
+                if (parseInt(qty) > 0) {
+                    orderText += `${wine} - ${price} x ${qty} = ${subtotal}\n`;
+                }
+            });
+            
+            const subtotal = document.getElementById('subtotal').textContent;
+            const discount = document.getElementById('discount').textContent;
+            const total = document.getElementById('grandTotal').textContent;
+            
+            orderText += `\n*Subtotal:* ${subtotal}\n`;
+            orderText += `*10% OFF:* ${discount}\n`;
+            orderText += `*Total:* ${total}`;
+            
+            const phoneNumber = '19173284445'; // Cindy Lamb's number
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(orderText)}`;
+            window.open(whatsappUrl, '_blank');
         }
         
         // Initialize calculations
