@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Rio Wine Order Form</title>
+    <title>Casa Rio Wine Order Form - Mouton Noir</title>
     <style>
         * {
             margin: 0;
@@ -12,212 +12,266 @@
         }
         
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 20px;
+            line-height: 1.6;
         }
         
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         
         .header {
             text-align: center;
             margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #8b7355;
         }
         
-        .logo-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .logo-text {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 48px;
-            color: #333;
-        }
-        
-        .logo-subtext {
-            color: #b8860b;
-            font-size: 18px;
-            letter-spacing: 3px;
-            margin-top: -10px;
-        }
-        
-        .sheep-icon {
-            font-size: 60px;
-        }
-        
-        .form-title {
-            font-size: 24px;
+        .logo {
+            font-size: 2.5em;
+            color: #8b7355;
             font-weight: bold;
-            margin-top: 20px;
-        }
-        
-        .customer-details {
-            margin: 30px 0;
-        }
-        
-        .form-row {
-            display: flex;
             margin-bottom: 10px;
         }
         
-        .form-label {
-            width: 200px;
-            font-weight: bold;
-            padding: 8px;
+        .subtitle {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 15px;
         }
         
-        .form-input {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #333;
-            font-size: 14px;
+        .location-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
         
-        .date-input {
-            background-color: #ffff00;
+        .location-info p {
+            margin: 5px 0;
+            color: #555;
         }
         
-        table {
+        .date-input-field {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #8b7355;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-section h3 {
+            color: #8b7355;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #8b7355;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .wine-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            overflow-x: auto;
+            display: block;
         }
         
-        th, td {
-            border: 1px solid #333;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        th {
-            background-color: #f0f0f0;
-            font-weight: bold;
-        }
-        
-        .wine-input {
+        .wine-table table {
             width: 100%;
-            border: none;
-            padding: 4px;
-            font-size: 14px;
+            min-width: 600px;
+        }
+        
+        .wine-table th {
+            background: #8b7355;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .wine-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .wine-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .wine-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .price {
+            color: #8b7355;
+            font-weight: 600;
         }
         
         .qty-input {
-            width: 60px;
+            width: 80px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
             text-align: center;
+            font-size: 16px;
+        }
+        
+        .subtotal-cell {
+            font-weight: 600;
+            color: #333;
         }
         
         .totals-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
             margin: 20px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
         }
         
         .total-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            font-size: 16px;
+            padding: 10px 0;
+            font-size: 1.1em;
         }
         
-        .total-row.grand-total {
-            border-top: 2px solid #333;
+        .total-row.final {
+            border-top: 3px solid #8b7355;
             margin-top: 10px;
-            padding-top: 10px;
+            padding-top: 15px;
+            font-size: 1.4em;
             font-weight: bold;
-            font-size: 18px;
+            color: #8b7355;
         }
         
-        .total-value {
-            min-width: 100px;
-            text-align: right;
-        }
-        
-        .payment-section {
-            margin-top: 30px;
-            background-color: #fffacd;
+        .payment-info {
+            background: #fff3cd;
             padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
+            border-left: 5px solid #8b7355;
+            margin-bottom: 20px;
         }
         
-        .payment-title {
-            font-weight: bold;
+        .payment-info h3 {
+            color: #8b7355;
             margin-bottom: 15px;
-            font-size: 18px;
         }
         
-        .payment-row {
-            display: flex;
-            margin-bottom: 10px;
-            line-height: 1.6;
+        .payment-option {
+            margin: 10px 0;
+            padding: 8px 0;
         }
         
-        .payment-label {
-            font-weight: bold;
-            width: 180px;
+        .payment-option strong {
+            color: #333;
+            display: inline-block;
+            width: 150px;
         }
         
-        .payment-value {
-            flex: 1;
-        }
-        
-        .payment-note {
-            margin-top: 15px;
-            font-style: italic;
-            color: #666;
-        }
-        
-        .whatsapp-button {
-            display: block;
+        .submit-btn {
             width: 100%;
-            background-color: #25D366;
+            padding: 18px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: white;
-            text-align: center;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 30px;
-            cursor: pointer;
             border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
         }
         
-        .whatsapp-button:hover {
-            background-color: #20BA5A;
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
         }
         
         .contact-info {
+            text-align: center;
             margin-top: 20px;
-            text-align: center;
-            font-weight: bold;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
         }
         
-        .thank-you {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 40px;
-        }
-        
-        @media print {
-            body {
-                padding: 0;
-            }
+        @media (max-width: 768px) {
             .container {
-                box-shadow: none;
+                padding: 20px;
             }
-            .whatsapp-button {
-                display: none;
+            
+            .logo {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1.4em;
+            }
+            
+            .wine-table {
+                font-size: 14px;
+            }
+            
+            .wine-table th,
+            .wine-table td {
+                padding: 8px;
+            }
+            
+            .qty-input {
+                width: 60px;
+            }
+            
+            .payment-option strong {
+                display: block;
+                margin-bottom: 5px;
             }
         }
     </style>
@@ -225,249 +279,255 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo-section">
-                <div>
-                    <div style="text-align: left;">
-                        <div style="color: #b8860b; font-size: 24px;">🍷</div>
-                        <div class="logo-text">Mouton Noir</div>
-                        <div class="logo-subtext">WINE GROUP</div>
-                    </div>
+            <div class="logo">🍷 Mouton Noir Wine Group</div>
+            <div class="subtitle">CASA RIO WINE ORDER FORM</div>
+        </div>
+        
+        <div class="location-info">
+            <p><strong>Location:</strong> Casa Rio</p>
+            <label for="dateInput"><strong>Date:</strong></label>
+            <input type="text" id="dateInput" class="date-input-field" placeholder="Enter date">
+        </div>
+        
+        <form id="orderForm">
+            <div class="form-section">
+                <h3>Customer Information</h3>
+                <div class="form-group">
+                    <label for="name">Name: *</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
-                <div class="sheep-icon">🐑</div>
-            </div>
-            <div class="form-title">CASA RIO WINE ORDER FORM</div>
-        </div>
-        
-        <div class="customer-details">
-            <div class="form-row">
-                <div class="form-label">Date:</div>
-                <input type="text" class="form-input date-input" id="date" placeholder="Enter date">
-            </div>
-            <div class="form-row">
-                <div class="form-label">Name:</div>
-                <input type="text" class="form-input" id="name" placeholder="Enter name">
-            </div>
-            <div class="form-row">
-                <div class="form-label">Contact:</div>
-                <input type="text" class="form-input" id="contact" placeholder="Enter contact">
-            </div>
-            <div class="form-row">
-                <div class="form-label">Whatsapp:</div>
-                <input type="text" class="form-input" id="whatsapp" placeholder="Enter WhatsApp number">
-            </div>
-            <div class="form-row">
-                <div class="form-label">Delivery Address:</div>
-                <input type="text" class="form-input" id="address" placeholder="Enter delivery address">
-            </div>
-            <div class="form-row">
-                <div class="form-label">Delivery Instructions:</div>
-                <input type="text" class="form-input" id="instructions" placeholder="Enter delivery instructions">
-            </div>
-        </div>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 40%;">Wine</th>
-                    <th style="width: 20%;">Unit Price</th>
-                    <th style="width: 15%;">Qty</th>
-                    <th style="width: 25%;">Subtotal</th>
-                </tr>
-            </thead>
-            <tbody id="wineTable">
-                <tr>
-                    <td><input type="text" class="wine-input" value="Mas Fi Salat Cava"></td>
-                    <td><input type="text" class="wine-input" value="CRC 6,970"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="wine-input" value="La Playa Sauvignon Blanc"></td>
-                    <td><input type="text" class="wine-input" value="CRC 5,270"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="wine-input" value="Callia Pinot Grigio"></td>
-                    <td><input type="text" class="wine-input" value="CRC 6,215"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="wine-input" value="La Playa Merlot"></td>
-                    <td><input type="text" class="wine-input" value="CRC 5,400"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="wine-input" value="Rayun Chardonnay"></td>
-                    <td><input type="text" class="wine-input" value="CRC 5,085"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="wine-input" value="Rayun Merlot"></td>
-                    <td><input type="text" class="wine-input" value="CRC 5,085"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="wine-input" value="William Cole Pinot Noir"></td>
-                    <td><input type="text" class="wine-input" value="CRC 7,055"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="wine-input" value="Odjfell Cabernet Sauvignon"></td>
-                    <td><input type="text" class="wine-input" value="CRC 7,905"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="wine-input" value="Portillo Malbec Orgánico"></td>
-                    <td><input type="text" class="wine-input" value="CRC 6,215"></td>
-                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
-                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <div class="totals-section">
-            <div class="total-row">
-                <div>Subtotal:</div>
-                <div class="total-value" id="subtotal">$0.00</div>
-            </div>
-            <div class="total-row">
-                <div>10% OFF:</div>
-                <div class="total-value" id="discount">$0.00</div>
-            </div>
-            <div class="total-row grand-total">
-                <div>Total:</div>
-                <div class="total-value" id="grandTotal">$0.00</div>
-            </div>
-        </div>
-        
-        <div class="payment-section">
-            <div class="payment-title">Payment Options</div>
-            
-            <div class="payment-row">
-                <div class="payment-label">Company:</div>
-                <div class="payment-value">Distribuidora E Importador Sabores Argentinos S.A. CTA #909798654</div>
+                <div class="form-group">
+                    <label for="contact">Contact: *</label>
+                    <input type="tel" id="contact" name="contact" required>
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp: *</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address: *</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="instructions">Delivery Instructions:</label>
+                    <textarea id="instructions" name="instructions"></textarea>
+                </div>
             </div>
             
-            <div class="payment-row">
-                <div class="payment-label">SINPE:</div>
-                <div class="payment-value">8365-8812</div>
+            <div class="form-section">
+                <h3>Wine Selection</h3>
+                <div class="wine-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Wine</th>
+                                <th>Unit Price</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="wineTable">
+                            <tr data-price="6970">
+                                <td class="wine-name">Mas Fi Salat Cava</td>
+                                <td class="price">CRC 6,970</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="Mas Fi Salat Cava"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                            <tr data-price="5270">
+                                <td class="wine-name">La Playa Sauvignon Blanc</td>
+                                <td class="price">CRC 5,270</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="La Playa Sauvignon Blanc"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                            <tr data-price="6215">
+                                <td class="wine-name">Callia Pinot Grigio</td>
+                                <td class="price">CRC 6,215</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="Callia Pinot Grigio"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                            <tr data-price="5400">
+                                <td class="wine-name">La Playa Merlot</td>
+                                <td class="price">CRC 5,400</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="La Playa Merlot"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                            <tr data-price="5085">
+                                <td class="wine-name">Rayun Chardonnay</td>
+                                <td class="price">CRC 5,085</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="Rayun Chardonnay"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                            <tr data-price="5085">
+                                <td class="wine-name">Rayun Merlot</td>
+                                <td class="price">CRC 5,085</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="Rayun Merlot"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                            <tr data-price="7055">
+                                <td class="wine-name">William Cole Pinot Noir</td>
+                                <td class="price">CRC 7,055</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="William Cole Pinot Noir"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                            <tr data-price="7905">
+                                <td class="wine-name">Odjfell Cabernet Sauvignon</td>
+                                <td class="price">CRC 7,905</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="Odjfell Cabernet Sauvignon"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                            <tr data-price="6215">
+                                <td class="wine-name">Portillo Malbec Orgánico</td>
+                                <td class="price">CRC 6,215</td>
+                                <td><input type="number" class="qty-input" min="0" value="0" data-wine="Portillo Malbec Orgánico"></td>
+                                <td class="subtotal-cell">CRC 0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
-            <div class="payment-row">
-                <div class="payment-label">Zelle:</div>
-                <div class="payment-value">917-328-4445</div>
+            <div class="totals-section">
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">CRC 0</span>
+                </div>
+                <div class="total-row">
+                    <span>10% OFF:</span>
+                    <span id="discount">CRC 0</span>
+                </div>
+                <div class="total-row final">
+                    <span>Total:</span>
+                    <span id="total">CRC 0</span>
+                </div>
             </div>
             
-            <div class="payment-row">
-                <div class="payment-label">USD IBAN (Scotia):</div>
-                <div class="payment-value">CR15 0123 0002 5010 2449 81</div>
+            <div class="payment-info">
+                <h3>Payment Options</h3>
+                <div class="payment-option">
+                    <strong>Company:</strong> Distribuidora E Importador Sabores Argentinos S.A. CTA #909798654
+                </div>
+                <div class="payment-option">
+                    <strong>SINPE:</strong> 8365-8812
+                </div>
+                <div class="payment-option">
+                    <strong>Zelle:</strong> 917-328-4445
+                </div>
+                <div class="payment-option">
+                    <strong>USD IBAN (Scotia):</strong> CR15 0123 0002 5010 2449 81
+                </div>
+                <div class="payment-option">
+                    <strong>CRC IBAN (BCR):</strong> CR25 0102 0000 9097 9865 47
+                </div>
+                <p style="margin-top: 15px; font-style: italic; color: #666;">
+                    Please add our email to bank transfers: <strong>MoutonNoirWine@gmail.com</strong>
+                </p>
             </div>
             
-            <div class="payment-row">
-                <div class="payment-label">CRC IBAN (BCR):</div>
-                <div class="payment-value">CR25 0102 0000 9097 9865 47</div>
-            </div>
-            
-            <div class="payment-note">
-                Please add our email to bank transfers: MoutonNoirWine@gmail.com
-            </div>
-        </div>
-        
-        <button class="whatsapp-button" onclick="sendWhatsAppOrder()">
-            📱 Send Order via WhatsApp
-        </button>
+            <button type="submit" class="submit-btn">📱 Contact via Phone</button>
+        </form>
         
         <div class="contact-info">
-            Wine Rep: Cindy Lamb
+            <p><strong>Wine Rep:</strong> Cindy Lamb</p>
+            <p>📞 +1-917-328-4445 / +506-8792-4130</p>
+            <p>Thank you!</p>
         </div>
-        <div class="contact-info">
-            📞 +1-917-328-4445 / +506-8792-4130
-        </div>
-        
-        <div class="thank-you">Thank you!</div>
     </div>
     
     <script>
         // Set today's date by default
-        document.getElementById('date').value = new Date().toLocaleDateString();
+        document.getElementById('dateInput').value = new Date().toLocaleDateString();
         
-        function calculateTotal() {
-            const rows = document.querySelectorAll('#wineTable tr');
+        // Calculate totals
+        function calculateTotals() {
             let subtotal = 0;
             
-            rows.forEach(row => {
-                const priceInput = row.cells[1].querySelector('input');
-                const qtyInput = row.cells[2].querySelector('input');
-                const subtotalInput = row.cells[3].querySelector('input');
-                
-                const priceText = priceInput.value.replace(/[^0-9]/g, '');
-                const price = parseInt(priceText) || 0;
+            document.querySelectorAll('#wineTable tr').forEach(row => {
+                const price = parseFloat(row.dataset.price);
+                const qtyInput = row.querySelector('.qty-input');
                 const qty = parseInt(qtyInput.value) || 0;
                 const itemSubtotal = price * qty;
                 
-                subtotalInput.value = 'CRC ' + itemSubtotal.toLocaleString();
+                row.querySelector('.subtotal-cell').textContent = 'CRC ' + itemSubtotal.toLocaleString();
                 subtotal += itemSubtotal;
             });
             
             const discount = subtotal * 0.10;
             const total = subtotal - discount;
             
-            document.getElementById('subtotal').textContent = '$' + subtotal.toLocaleString();
-            document.getElementById('discount').textContent = '$' + discount.toLocaleString();
-            document.getElementById('grandTotal').textContent = '$' + total.toLocaleString();
+            document.getElementById('subtotal').textContent = 'CRC ' + subtotal.toLocaleString();
+            document.getElementById('discount').textContent = 'CRC ' + discount.toLocaleString();
+            document.getElementById('total').textContent = 'CRC ' + total.toLocaleString();
         }
         
-        function sendWhatsAppOrder() {
-            const name = document.getElementById('name').value;
-            const contact = document.getElementById('contact').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            const address = document.getElementById('address').value;
-            const instructions = document.getElementById('instructions').value;
-            const date = document.getElementById('date').value;
+        // Add event listeners to all quantity inputs
+        document.querySelectorAll('.qty-input').forEach(input => {
+            input.addEventListener('input', calculateTotals);
+        });
+        
+        // Handle form submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            let orderText = `*Wine Order - Casa Rio*\n\n`;
-            orderText += `Date: ${date}\n`;
-            orderText += `Name: ${name}\n`;
-            orderText += `Contact: ${contact}\n`;
-            orderText += `WhatsApp: ${whatsapp}\n`;
-            orderText += `Delivery Address: ${address}\n`;
-            orderText += `Instructions: ${instructions}\n\n`;
-            orderText += `*Order Details:*\n`;
+            // Collect order data
+            const formData = {
+                date: document.getElementById('dateInput').value,
+                name: document.getElementById('name').value,
+                contact: document.getElementById('contact').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                address: document.getElementById('address').value,
+                instructions: document.getElementById('instructions').value,
+                wines: [],
+                subtotal: document.getElementById('subtotal').textContent,
+                discount: document.getElementById('discount').textContent,
+                total: document.getElementById('total').textContent
+            };
             
-            const rows = document.querySelectorAll('#wineTable tr');
-            rows.forEach(row => {
-                const wine = row.cells[0].querySelector('input').value;
-                const price = row.cells[1].querySelector('input').value;
-                const qty = row.cells[2].querySelector('input').value;
-                const subtotal = row.cells[3].querySelector('input').value;
-                
-                if (parseInt(qty) > 0) {
-                    orderText += `${wine} - ${price} x ${qty} = ${subtotal}\n`;
+            // Collect wine orders
+            document.querySelectorAll('.qty-input').forEach(input => {
+                const qty = parseInt(input.value) || 0;
+                if (qty > 0) {
+                    const row = input.closest('tr');
+                    formData.wines.push({
+                        name: input.dataset.wine,
+                        price: row.dataset.price,
+                        quantity: qty,
+                        subtotal: row.querySelector('.subtotal-cell').textContent
+                    });
                 }
             });
             
-            const subtotal = document.getElementById('subtotal').textContent;
-            const discount = document.getElementById('discount').textContent;
-            const total = document.getElementById('grandTotal').textContent;
+            // Check if any wines were ordered
+            if (formData.wines.length === 0) {
+                alert('Please select at least one wine to order.');
+                return;
+            }
             
-            orderText += `\n*Subtotal:* ${subtotal}\n`;
-            orderText += `*10% OFF:* ${discount}\n`;
-            orderText += `*Total:* ${total}`;
+            // Create message for WhatsApp
+            let message = `🍷 *WINE ORDER - CASA RIO*\\n`;
+            message += `*Date:* ${formData.date}\\n\\n`;
+            message += `*Customer:* ${formData.name}\\n`;
+            message += `*Contact:* ${formData.contact}\\n`;
+            message += `*WhatsApp:* ${formData.whatsapp}\\n`;
+            message += `*Address:* ${formData.address}\\n`;
+            if (formData.instructions) message += `*Instructions:* ${formData.instructions}\\n`;
+            message += `\\n*WINES:*\\n`;
+            formData.wines.forEach(wine => {
+                message += `• ${wine.name} x${wine.quantity} = ${wine.subtotal}\\n`;
+            });
+            message += `\\n*Subtotal:* ${formData.subtotal}\\n`;
+            message += `*10% OFF:* ${formData.discount}\\n`;
+            message += `*TOTAL:* ${formData.total}`;
             
+            // Encode message for WhatsApp
+            const encodedMessage = encodeURIComponent(message);
             const phoneNumber = '19173284445'; // Cindy Lamb's number
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(orderText)}`;
-            window.open(whatsappUrl, '_blank');
-        }
+            
+            // Open WhatsApp with pre-filled message
+            window.location.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        });
         
-        // Initialize calculations
-        calculateTotal();
+        // Initial calculation
+        calculateTotals();
     </script>
 </body>
 </html>
