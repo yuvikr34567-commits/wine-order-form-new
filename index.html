@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Rio Wine Order Form - Mouton Noir</title>
+    <title>Wine Order - Casa Rio</title>
     <style>
         * {
             margin: 0;
@@ -34,17 +34,25 @@
             border-bottom: 3px solid #8b7355;
         }
         
-        .logo {
-            font-size: 2.5em;
-            color: #8b7355;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .mouton-logo {
+            max-width: 350px;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
         }
         
         .subtitle {
             font-size: 1.8em;
             color: #333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .casa-rio-logo {
+            max-width: 200px;
+            height: auto;
+            margin: 20px auto 0;
+            display: block;
         }
         
         .location-info {
@@ -52,20 +60,26 @@
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .location-info .casa-logo-small {
+            max-width: 60px;
+            height: auto;
         }
         
         .location-info p {
-            margin: 5px 0;
+            margin: 0;
             color: #555;
+            font-size: 1.1em;
         }
         
-        .date-input-field {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #8b7355;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-top: 5px;
+        .date-fixed {
+            font-weight: bold;
+            color: #8b7355;
+            margin-left: auto;
         }
         
         .form-section {
@@ -95,6 +109,7 @@
         input[type="email"],
         input[type="tel"],
         input[type="number"],
+        input[type="date"],
         textarea {
             width: 100%;
             padding: 12px;
@@ -248,12 +263,16 @@
                 padding: 20px;
             }
             
-            .logo {
-                font-size: 2em;
+            .mouton-logo {
+                max-width: 250px;
             }
             
             .subtitle {
                 font-size: 1.4em;
+            }
+            
+            .casa-rio-logo {
+                max-width: 150px;
             }
             
             .wine-table {
@@ -273,20 +292,26 @@
                 display: block;
                 margin-bottom: 5px;
             }
+            
+            .location-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🍷 Mouton Noir Wine Group</div>
-            <div class="subtitle">CASA RIO WINE ORDER FORM</div>
+            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/6acccab2-3e41-44d6-86bc-b0d17ade17ec/2026-01-18T19-10-03-683Z-bd8c4870-chat-image-1768763403663-0.jpg" alt="Mouton Noir Wine Group" class="mouton-logo">
+            <div class="subtitle">WINE ORDER</div>
+            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/6acccab2-3e41-44d6-86bc-b0d17ade17ec/2026-01-18T19-10-03-793Z-b05871e3-chat-image-1768763403774-1.jpg" alt="Casa Rio" class="casa-rio-logo">
         </div>
         
         <div class="location-info">
-            <p><strong>Location:</strong> Casa Rio</p>
-            <label for="dateInput"><strong>Date:</strong></label>
-            <input type="text" id="dateInput" class="date-input-field" placeholder="Enter date">
+            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/6acccab2-3e41-44d6-86bc-b0d17ade17ec/2026-01-18T19-10-03-793Z-b05871e3-chat-image-1768763403774-1.jpg" alt="Casa Rio" class="casa-logo-small">
+            <p><strong>Casa Rio</strong></p>
+            <p class="date-fixed"><strong>Date:</strong> <input type="date" id="orderDate" style="display: inline-block; width: auto; padding: 5px; border: 2px solid #8b7355; border-radius: 5px;" required></p>
         </div>
         
         <form id="orderForm">
@@ -294,23 +319,27 @@
                 <h3>Customer Information</h3>
                 <div class="form-group">
                     <label for="name">Name: *</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" value="Casa Rio" required>
                 </div>
                 <div class="form-group">
-                    <label for="contact">Contact: *</label>
-                    <input type="tel" id="contact" name="contact" required>
+                    <label for="phone">Phone: *</label>
+                    <input type="tel" id="phone" name="phone" value="8582-4000" required>
                 </div>
                 <div class="form-group">
-                    <label for="whatsapp">WhatsApp: *</label>
-                    <input type="tel" id="whatsapp" name="whatsapp" required>
+                    <label for="email">Email: *</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Delivery Address: *</label>
-                    <input type="text" id="address" name="address" required>
+                    <input type="text" id="address" name="address" value="Casa Rio in Cocles" required>
                 </div>
                 <div class="form-group">
-                    <label for="instructions">Delivery Instructions:</label>
-                    <textarea id="instructions" name="instructions"></textarea>
+                    <label for="addressDesc">Address Description:</label>
+                    <textarea id="addressDesc" name="addressDesc">contiguo a puente Rio Negro, Carreterra manzanillo</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="town">Town: *</label>
+                    <input type="text" id="town" name="town" value="Limon, Cocles" required>
                 </div>
             </div>
             
@@ -392,7 +421,7 @@
                     <span id="subtotal">CRC 0</span>
                 </div>
                 <div class="total-row">
-                    <span>10% OFF:</span>
+                    <span>15% OFF:</span>
                     <span id="discount">CRC 0</span>
                 </div>
                 <div class="total-row final">
@@ -408,9 +437,6 @@
                 </div>
                 <div class="payment-option">
                     <strong>SINPE:</strong> 8365-8812
-                </div>
-                <div class="payment-option">
-                    <strong>Zelle:</strong> 917-328-4445
                 </div>
                 <div class="payment-option">
                     <strong>USD IBAN (Scotia):</strong> CR15 0123 0002 5010 2449 81
@@ -434,8 +460,10 @@
     </div>
     
     <script>
-        // Set today's date by default
-        document.getElementById('dateInput').value = new Date().toLocaleDateString();
+        // Format number with thousand separators
+        function formatCRC(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
         
         // Calculate totals
         function calculateTotals() {
@@ -447,16 +475,16 @@
                 const qty = parseInt(qtyInput.value) || 0;
                 const itemSubtotal = price * qty;
                 
-                row.querySelector('.subtotal-cell').textContent = 'CRC ' + itemSubtotal.toLocaleString();
+                row.querySelector('.subtotal-cell').textContent = 'CRC ' + formatCRC(itemSubtotal);
                 subtotal += itemSubtotal;
             });
             
-            const discount = subtotal * 0.10;
+            const discount = subtotal * 0.15;
             const total = subtotal - discount;
             
-            document.getElementById('subtotal').textContent = 'CRC ' + subtotal.toLocaleString();
-            document.getElementById('discount').textContent = 'CRC ' + discount.toLocaleString();
-            document.getElementById('total').textContent = 'CRC ' + total.toLocaleString();
+            document.getElementById('subtotal').textContent = 'CRC ' + formatCRC(subtotal);
+            document.getElementById('discount').textContent = 'CRC ' + formatCRC(Math.round(discount));
+            document.getElementById('total').textContent = 'CRC ' + formatCRC(Math.round(total));
         }
         
         // Add event listeners to all quantity inputs
@@ -468,18 +496,27 @@
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const orderDate = document.getElementById('orderDate').value;
+            
+            if (!orderDate) {
+                alert('Please select a date.');
+                return;
+            }
+            
             // Collect order data
             const formData = {
-                date: document.getElementById('dateInput').value,
                 name: document.getElementById('name').value,
-                contact: document.getElementById('contact').value,
-                whatsapp: document.getElementById('whatsapp').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
                 address: document.getElementById('address').value,
-                instructions: document.getElementById('instructions').value,
+                addressDesc: document.getElementById('addressDesc').value,
+                town: document.getElementById('town').value,
                 wines: [],
                 subtotal: document.getElementById('subtotal').textContent,
                 discount: document.getElementById('discount').textContent,
-                total: document.getElementById('total').textContent
+                total: document.getElementById('total').textContent,
+                date: orderDate,
+                location: 'CASA RIO'
             };
             
             // Collect wine orders
@@ -503,19 +540,20 @@
             }
             
             // Create message for WhatsApp
-            let message = `🍷 *WINE ORDER - CASA RIO*\\n`;
+            let message = `🍷 *WINE ORDER - ${formData.location}*\\n`;
             message += `*Date:* ${formData.date}\\n\\n`;
             message += `*Customer:* ${formData.name}\\n`;
-            message += `*Contact:* ${formData.contact}\\n`;
-            message += `*WhatsApp:* ${formData.whatsapp}\\n`;
+            message += `*Phone:* ${formData.phone}\\n`;
+            message += `*Email:* ${formData.email}\\n`;
             message += `*Address:* ${formData.address}\\n`;
-            if (formData.instructions) message += `*Instructions:* ${formData.instructions}\\n`;
+            message += `*Description:* ${formData.addressDesc}\\n`;
+            message += `*Town:* ${formData.town}\\n`;
             message += `\\n*WINES:*\\n`;
             formData.wines.forEach(wine => {
                 message += `• ${wine.name} x${wine.quantity} = ${wine.subtotal}\\n`;
             });
             message += `\\n*Subtotal:* ${formData.subtotal}\\n`;
-            message += `*10% OFF:* ${formData.discount}\\n`;
+            message += `*15% OFF:* ${formData.discount}\\n`;
             message += `*TOTAL:* ${formData.total}`;
             
             // Encode message for WhatsApp
